@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.pytest_cache
+.coverage
+htmlcov
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+venv/
+env/
+ENV/
+
+# Data (will be mounted as volume)
+data/
+*.db
+
+# Documentation
+*.md
+ARCHITECTURE.md
+SESSION_STARTER.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mee6-backend
+    restart: unless-stopped
+    environment:
+      # Required: OpenAI API key
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # Optional: Override config path
+      - CONFIG_PATH=${CONFIG_PATH:-/app/config.yaml}
+    volumes:
+      # Persist SQLite database
+      - ./data:/app/data
+      # Optional: Mount config for easy updates (or use env vars)
+      - ./backend/config.yaml:/app/config.yaml:ro
+    # Health check (optional - adjust based on your needs)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os; exit(0 if os.path.exists('/app/data/bot.db') else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
